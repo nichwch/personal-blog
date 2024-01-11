@@ -35,7 +35,7 @@
 
 <div class="relative h-7 w-7 webringButton">
 	<button
-		class="ml-2 inline-block px-1 w-7 h-7 bg-green-300 hover:bg-green-400 transition-colors border border-black"
+		class="ml-2 inline-block px-1 w-7 h-7 bg-green-400 hover:bg-green-500 transition-colors border border-black"
 		on:click={() => {
 			showing = !showing;
 		}}
