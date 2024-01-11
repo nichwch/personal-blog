@@ -40,14 +40,11 @@
 			console.log('working');
 			showingTagFilters.set(!$showingTagFilters);
 		}}
-		>{#if $showingTagFilters}
-			hide tags
+	>
+		{#if $focusedTag}
+			tagged: {$focusedTag}
 		{:else}
-			{#if $focusedTag}
-				tagged: {$focusedTag}
-			{:else}
-				show tags
-			{/if}
+			tags
 		{/if}</button
 	>
 	<a
