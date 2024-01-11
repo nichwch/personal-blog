@@ -2,7 +2,6 @@
 	import { modalStore } from './sidebarStores';
 	import { page } from '$app/stores';
 	import TagFilter from './TagFilter.svelte';
-	import WebRing from './WebRing.svelte';
 	export let posts: string[];
 	export let tags: string[];
 </script>

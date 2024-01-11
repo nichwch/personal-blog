@@ -8,7 +8,6 @@
 	import MobileModalNav from './MobileModalNav.svelte';
 	import TagFilter from './TagFilter.svelte';
 
-	import WebRing from './WebRing.svelte';
 	export let data;
 	const closeSidebar = () => {
 		related.set(null);
@@ -45,7 +44,7 @@
 </button>
 <div class="h-full flex">
 	<!-- desktop menu -->
-	<div class="hidden md:block p-2 pt-10 overflow-y-auto basis-1/5 pb-20">
+	<div class="hidden md:block p-2 pt-12 overflow-y-auto basis-1/5 pb-20">
 		<div class="absolute top-3 left-2">
 			<TagFilter tags={allTags} />
 		</div>
@@ -62,7 +61,6 @@
 	{#if $modalStore}
 		<MobileModalNav {posts} tags={allTags} />
 	{/if}
-	<WebRing />
 	<div class="flex-grow overflow-y-auto py-10">
 		<slot />
 	</div>

@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { afterUpdate, onDestroy, onMount } from 'svelte';
 	import { focusedTag, showingTagFilters } from './sidebarStores';
+	import WebRing from './WebRing.svelte';
 	export let tags: string[];
 
 	const hideFiltersOnClick = (event: MouseEvent) => {
@@ -9,7 +10,11 @@
 		let found = false;
 
 		while (element) {
-			if (element.className.includes('filterMenu')) {
+			if (
+				element.className &&
+				typeof element.className === 'string' &&
+				element.className?.includes('filterMenu')
+			) {
 				found = true;
 				break;
 			}
@@ -17,7 +22,6 @@
 		}
 		console.log(found, element);
 		if (!found) {
-			console.log('setting to false');
 			showingTagFilters.set(false);
 		}
 	};
@@ -27,11 +31,9 @@
 			window.removeEventListener('click', hideFiltersOnClick);
 		};
 	});
-
-	$: console.log('showing filters?', $showingTagFilters);
 </script>
 
-<div>
+<div class="flex">
 	<button
 		class="px-1 bg-red-400 hover:bg-red-500 transition-colors border border-black shadow filterMenu"
 		on:click={() => {
@@ -49,9 +51,10 @@
 		{/if}</button
 	>
 	<a
-		class="inline-block px-1 bg-blue-300 hover:bg-blue-400 transition-colors border border-black shadow"
+		class="ml-2 inline-block px-1 bg-blue-300 hover:bg-blue-400 transition-colors border border-black shadow"
 		href="/">now</a
 	>
+	<WebRing />
 </div>
 
 {#if $showingTagFilters}
