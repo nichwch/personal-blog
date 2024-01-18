@@ -4,9 +4,11 @@ In my teen years, I found programming and videogame development, and that became
 
 There was a problem with both of these outlets, however: my short attention span. I struggled to work on larger drawings, because I'd give up on them and start new doodles. The same happened with code projects.
 
+~
 I fell in love with playing the guitar because it rewards this lack of an attention span. You can copy a riff in minutes. You can create a new riff in minutes. Picking up a guitar puts me in an instant flow state, because I can just screw around and play with ideas instantly. It feels like a REPL for musical ideas.
 
 I desperately want programming to feel like this.
+~
 
 For a while, I exclusively worked on a long, serious projects. I wanted to build a billion dollar product. I wanted to be the founder of a successful startup. I wanted to write, but I wanted to write on my own platform that everybody else would also write on, that would have all the features I wanted that everybody else would love.
 
@@ -14,9 +16,11 @@ I stopped working on little projects. The voice in my head that would get excite
 
 I want to return to my roots. I want to get excited by little ideas and not worry about scaling them, or fitting them into a huge vision, or turning them into legible accomplishments. I still want to be ambitious, but I don't want to let my ambition choke my creativity.
 
+~
 I want this new site to be a space for that.
 
 I want a space to be incoherent. I want a space to just throw paint on the walls.
+~
 
 Many of my ideas are in service of a singular dream: having the ability to combine incoherent fragments of creative inspiration into a cohesive organized whole. exegesis is about enabling that with writing. I hope the design of this site will help me do that with interface ideas.
 

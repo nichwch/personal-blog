@@ -1,5 +1,7 @@
 // What I'm up to now, as of Jan 05 2024
 // back to my main site: https://nicholaschen.io
+// CLICK ON A PARAGRAPH TO SEE RELATED CONTENT
+// To read more on how this feature works, read [this](https://blog.nicholaschen.io/posts/What%20is%20Yurt.txt)
 
 At the Recurse center, grinding leetcode and working on nomad hypertext, a collection of interface ideas that center around local-first notetaking powered by semantic search and AI. 
 
