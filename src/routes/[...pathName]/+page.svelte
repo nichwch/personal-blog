@@ -5,7 +5,7 @@
 	import { focusedText, related } from '../searchStores';
 	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
-	import { tick } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { AGE_YOU_STOPPED_BEING_CRINGE, CRINGE_MESSAGE } from '../../lib';
 	export let data: PageData;
 	const segments = splitText(data.pageContent);
@@ -50,60 +50,71 @@
 
 	$: postName = $page.params.pathName.split('/').pop()?.split('.')?.[0];
 	$: postTags = data.tagIndex?.[$page.params.pathName] || [];
-	$: console.log({ data, ageAtPublish, ageAtPublishInMS });
+
+	let scrollWindow = null as null | HTMLElement;
+	let scrollY = 0;
+	const getScrollY = () => (scrollY = scrollWindow?.scrollTop || 0);
+	onMount(() => getScrollY());
+	$: console.log({ scrollY });
 </script>
 
 <title>{postName}</title>
-<div class="md:w-[26rem] lg:w-[36rem] mx-auto md:p-0 px-5">
-	<div class="mb-5 px-1">
-		<h1 class="text-lg font-semibold">{postName}</h1>
-		<div class="mb-2">
-			<i class="mr-3">{publishDate.toDateString()} </i>
-			{#each postTags as tag}
-				<span class="mx-1 mb-1 px-1 border border-black bg-red-200">{tag}</span>
-			{/each}
-		</div>
-		{#if ageAtPublish < AGE_YOU_STOPPED_BEING_CRINGE}
-			<div class="p-2 border border-red-800 bg-red-200 text-sm text-red-800">
-				{CRINGE_MESSAGE}
+<div class="flex-grow overflow-y-auto" bind:this={scrollWindow} on:scroll={getScrollY}>
+	<div class=" md:w-[26rem] lg:w-[36rem] mx-auto md:p-0 px-5">
+		<div
+			class=" px-1 pt-10 md:mt-7 md:py-3 sticky top-0 bg-white"
+			class:border-b-2={scrollY > 5}
+			class:border-b-gray-300={scrollY > 5}
+		>
+			<h1 class="text-lg font-semibold">{postName}</h1>
+			<div class="mb-2">
+				<i class="mr-3">{publishDate.toDateString()} </i>
+				{#each postTags as tag}
+					<span class="mx-1 mb-1 px-1 border border-black bg-red-200">{tag}</span>
+				{/each}
 			</div>
-		{/if}
-	</div>
-
-	{#each segments as segment, index}
-		{#if segment.trim().length > 0}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-			{#if segment.trim().startsWith('//')}
-				<div
-					role="article"
-					id="editor-block-{index}"
-					class="text-left text-green-800 block p-1 break-words whitespace-pre-wrap"
-				>
-					<SvelteMarkdown source={segment} isInline />
-				</div>
-			{:else if segment.trim() === '~'}
-				<div class="text-gray-300">~</div>
-			{:else}
-				<div
-					role="article"
-					id="editor-block-{index}"
-					class="text-left block p-1 break-words md:hover:bg-red-100 transition-colors whitespace-pre-wrap"
-					class:bg-red-100={$focusedText?.trim() === segment?.trim()}
-					class:border={$focusedText?.trim() === segment?.trim()}
-					class:border-red-500={$focusedText?.trim() === segment?.trim()}
-					on:click={() => {
-						focusedText.set(segment);
-						related.set(pageIndex[segment]);
-					}}
-				>
-					<SvelteMarkdown source={segment} isInline />
+			{#if ageAtPublish < AGE_YOU_STOPPED_BEING_CRINGE}
+				<div class="hidden md:block text-sm p-2 border border-red-800 bg-red-200 text-red-800">
+					{CRINGE_MESSAGE}
 				</div>
 			{/if}
-		{:else}
-			<br />
-		{/if}
-	{/each}
+		</div>
+
+		{#each segments as segment, index}
+			{#if segment.trim().length > 0}
+				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+				{#if segment.trim().startsWith('//')}
+					<div
+						role="article"
+						id="editor-block-{index}"
+						class="text-left text-green-800 block p-1 break-words whitespace-pre-wrap"
+					>
+						<SvelteMarkdown source={segment} isInline />
+					</div>
+				{:else if segment.trim() === '~'}
+					<div class="text-gray-300">~</div>
+				{:else}
+					<div
+						role="article"
+						id="editor-block-{index}"
+						class="text-left block p-1 break-words md:hover:bg-red-100 transition-colors whitespace-pre-wrap"
+						class:bg-red-100={$focusedText?.trim() === segment?.trim()}
+						class:border={$focusedText?.trim() === segment?.trim()}
+						class:border-red-500={$focusedText?.trim() === segment?.trim()}
+						on:click={() => {
+							focusedText.set(segment);
+							related.set(pageIndex[segment]);
+						}}
+					>
+						<SvelteMarkdown source={segment} isInline />
+					</div>
+				{/if}
+			{:else}
+				<br />
+			{/if}
+		{/each}
+	</div>
 </div>
 
 <style>

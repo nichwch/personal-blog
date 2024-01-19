@@ -37,7 +37,7 @@
 </script>
 
 <button
-	class="md:hidden absolute top-3 left-3 px-1 border border-black bg-red-400"
+	class="md:hidden absolute top-3 left-3 px-1 border border-black bg-red-400 z-30"
 	on:click={() => modalStore.set(!$modalStore)}
 >
 	menu
@@ -61,9 +61,9 @@
 	{#if $modalStore}
 		<MobileModalNav {posts} tags={allTags} />
 	{/if}
-	<div class="flex-grow overflow-y-auto py-10">
-		<slot />
-	</div>
+
+	<slot />
+
 	{#if $focusedText !== null}
 		<!-- desktop search results -->
 		<div class="hidden md:flex flex-col p-2 pt-10 basis-1/5 w-1/5 h-full">
