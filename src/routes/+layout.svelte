@@ -7,6 +7,7 @@
 	import { focusedTag, modalStore } from './sidebarStores';
 	import MobileModalNav from './MobileModalNav.svelte';
 	import TagFilter from './TagFilter.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
 	const closeSidebar = () => {
@@ -26,6 +27,11 @@
 			}, [] as string[])
 		)
 	);
+	let searchResults = null as null | HTMLElement;
+	let searchScrollY = 0;
+	const getSearchScrollY = () => (searchScrollY = searchResults?.scrollTop || 0);
+	onMount(() => getSearchScrollY());
+	$: console.log({ searchScrollY });
 
 	$: relatedContent = $related?.filter((el) => el.content?.trim() !== $focusedText?.trim());
 	$: posts = data.posts.filter((el) => {
@@ -67,10 +73,21 @@
 	{#if $focusedText !== null}
 		<!-- desktop search results -->
 		<div class="hidden md:flex flex-col p-2 pt-10 basis-1/5 w-1/5 h-full">
-			<div class="text-red-700">
+			<div
+				class="text-red-700"
+				class:border-b-2={searchScrollY > 5}
+				class:border-b-gray-300={searchScrollY > 5}
+			>
 				related <button class="float-right hover:underline" on:click={closeSidebar}>[X]</button>
 			</div>
-			<div class="overflow-y-auto w-full">
+			<div
+				class="overflow-y-auto w-full"
+				bind:this={searchResults}
+				on:scroll={(evt) => {
+					console.log(evt);
+					getSearchScrollY();
+				}}
+			>
 				{#each relatedContent || [] as entry}
 					<SearchEntry {entry} />
 				{/each}

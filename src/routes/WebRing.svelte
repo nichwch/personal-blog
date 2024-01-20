@@ -20,7 +20,6 @@
 			}
 			element = element.parentElement as HTMLElement;
 		}
-		console.log(found, element);
 		if (!found) {
 			showing = false;
 		}

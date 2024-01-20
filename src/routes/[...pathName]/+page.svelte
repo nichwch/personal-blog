@@ -55,7 +55,6 @@
 	let scrollY = 0;
 	const getScrollY = () => (scrollY = scrollWindow?.scrollTop || 0);
 	onMount(() => getScrollY());
-	$: console.log({ scrollY });
 </script>
 
 <title>{postName}</title>
