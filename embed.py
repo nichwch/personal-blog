@@ -3,14 +3,18 @@ import json
 import os
 import time
 
+LAST_INDEXED_TIME = "./config/lastindexeddate.config.txt"
+INDEXED_FILES = "./config/indexedfiles.config.json"
 chroma_client = chromadb.PersistentClient(path="./db")
-
 
 if(chroma_client.get_collection("collection") is None):
     collection = chroma_client.create_collection(name="collection")
-previously_indexed_files = json.load(open('./config/indexedfiles.config.json'))
 try:
-    last_indexed_date = int(open("./config/lastindexeddate.config.txt").read())
+    previously_indexed_files = json.load(open(INDEXED_FILES))
+except:
+    previously_indexed_files = []
+try:
+    last_indexed_date = int(open(LAST_INDEXED_TIME).read())
 except:
     last_indexed_date = 0
 
@@ -27,7 +31,8 @@ for post in files_in_post:
         files_edited_since_last_index.append(post)
 
 
-write('./config/lastindexeddate.config.txt', str(int(time.time())))
+with open(LAST_INDEXED_TIME, "w") as file:
+    file.write(str(time.time()))
 print('files in post')
 print(files_in_post)
 print('files edited since last index')
