@@ -74,7 +74,7 @@ class Indexer:
     # then indexes all of its segments in parallel
     async def index_file(self, filename:str):
         # TODO: make sure this actually deletes things
-        # self.collection.delete(where={'filename':filename})
+        self.collection.delete(where={'filename':{'$eq':filename}})
         post_content = open(POST_DIRECTORY + filename).read()
         segments = self.split_text(post_content)
         results = await asyncio.gather(*[self.index_segment(segment, filename) for segment in segments])
