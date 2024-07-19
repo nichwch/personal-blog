@@ -56,8 +56,8 @@ class Indexer:
         return res.data[0].embedding
     
     def get_closest_posts(self, query:str):
-        embedding = self.get_embedding(query)
-        res = self.collection.query(embedding, k=5)
+        embedding = asyncio.run(self.get_embedding(query))
+        res = self.collection.query(embedding, n_results=10)
         return res
 
     # indexes a single segment of a file
@@ -74,16 +74,11 @@ class Indexer:
     # then indexes all of its segments in parallel
     async def index_file(self, filename:str):
         # TODO: make sure this actually deletes things
-        self.collection.delete(where={'filename':{'$eq':filename}})
         post_content = open(POST_DIRECTORY + filename).read()
         segments = self.split_text(post_content)
+        segments = [segment for segment in segments if segment != '' and not segment.startswith('//')]
         results = await asyncio.gather(*[self.index_segment(segment, filename) for segment in segments])
-        self.collection.add(
-            ids=[result[0] for result in results],
-            embeddings=[result[1] for result in results],
-            documents=[result[2] for result in results],
-            metadatas=[result[3] for result in results]
-        )
+        return results
 
 
     
@@ -91,11 +86,24 @@ class Indexer:
     # then indexes them all in parallel
     async def aindex_newly_edited_files(self):
         newly_edited_files = self.get_newly_edited_files() 
-        await asyncio.gather(*[self.index_file(file) for file in newly_edited_files])
+        results = await asyncio.gather(*[self.index_file(file) for file in newly_edited_files])
+        for segments in results:
+            print(segments[0][3])
+            filename = segments[0][3]['filename']
+            print('inserting to db for:', filename)
+            self.collection.delete(where={'filename':{'$eq':filename}})
+            self.collection.add(
+                ids=[segment[0] for segment in segments],
+                embeddings=[segment[1] for segment in segments],
+                documents=[segment[2] for segment in segments],
+                metadatas=[segment[3] for segment in segments]
+            )
+            print('successfully inserted to db for:', filename)
         with open(LAST_INDEXED_TIME, "w") as file:
             file.write(str(time.time()))
         with open(INDEXED_FILES, "w") as file:
             json.dump([], file)
+
     def index_newly_edited_files(self):
         asyncio.run(self.aindex_newly_edited_files())
 
