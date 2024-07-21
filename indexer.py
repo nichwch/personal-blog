@@ -21,7 +21,6 @@ class Indexer:
     indexed_files: list[str]
     delimiter:str
 
-
     def __init__(self, delimiter:str = '\n'):
         try:
             self.collection = chroma_client.get_collection('collection')
@@ -80,8 +79,6 @@ class Indexer:
         results = await asyncio.gather(*[self.index_segment(segment, filename) for segment in segments])
         return results
 
-
-    
     # gets all newly edited files
     # then indexes them all in parallel
     async def aindex_newly_edited_files(self):
@@ -106,6 +103,27 @@ class Indexer:
 
     def index_newly_edited_files(self):
         asyncio.run(self.aindex_newly_edited_files())
+    
+    def create_file_index(self, file:str):
+        file_text = open(POST_DIRECTORY + file).read()
+        segments = self.split_text(file_text)
+        results = {}
+        print('creating index for ',file)
+        for segment in segments:
+            matches = self.get_closest_posts(segment)
+            matchObjs = []
+            for i in range(10):
+                content = matches['documents'][0][i]
+                parent = matches['metadatas'][0][i]
+                score = matches['distances'][0][i]
+                matchObjs.append({'content':content, 'parent':parent, 'score':score})
+            results[segment] = matchObjs
+        print(results)
+
+    def create_index(self):
+        files = os.listdir(POST_DIRECTORY)
+        for file in files:
+            self.create_file_index(file)
 
     def _debug_log_entries(self):
         breakpoint()
