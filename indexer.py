@@ -25,7 +25,7 @@ class Indexer:
         try:
             self.collection = chroma_client.get_collection('collection')
         except:
-            self.collection = chroma_client.create_collection(name="collection")
+            self.collection = chroma_client.create_collection(name="collection", metadata={"hnsw:space": "cosine"})
         try:
             self.indexed_files = json.load(open(INDEXED_FILES))
         except:
@@ -44,6 +44,7 @@ class Indexer:
         files_edited_since_last_index = []
         for post in files_in_post:
             if os.path.getmtime(POST_DIRECTORY + post) > self.last_indexed_date:
+                print(self.last_indexed_date,',',os.path.getmtime(POST_DIRECTORY + post))
                 files_edited_since_last_index.append(post)
         return files_edited_since_last_index
     
@@ -96,13 +97,14 @@ class Indexer:
                 metadatas=[segment[3] for segment in segments]
             )
             print('successfully inserted to db for:', filename)
+
+
+    def index_newly_edited_files(self):
+        asyncio.run(self.aindex_newly_edited_files())
         with open(LAST_INDEXED_TIME, "w") as file:
             file.write(str(time.time()))
         with open(INDEXED_FILES, "w") as file:
             json.dump([], file)
-
-    def index_newly_edited_files(self):
-        asyncio.run(self.aindex_newly_edited_files())
     
     def create_file_index(self, file:str):
         file_text = open(POST_DIRECTORY + file).read()
@@ -119,6 +121,11 @@ class Indexer:
                 matchObjs.append({'content':content, 'parent':parent, 'score':score})
             results[segment] = matchObjs
         print(results)
+
+    def create_file_index_for_new_files(self):
+        files = self.get_newly_edited_files()
+        for file in files:
+            self.create_file_index(file)
 
     def create_index(self):
         files = os.listdir(POST_DIRECTORY)
