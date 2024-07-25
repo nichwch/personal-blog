@@ -1,6 +1,6 @@
 import chromadb
 import uuid
-from openai import AsyncOpenAI
+from openai import AsyncOpenAI, OpenAI
 import json
 import os
 import time
@@ -12,7 +12,9 @@ INDEXED_FILES = "./config/indexedfiles.config.json"
 POST_DIRECTORY = './posts/'
 chroma_client = chromadb.PersistentClient(path="./db")
 
-client = AsyncOpenAI()
+async_client = AsyncOpenAI()
+client = OpenAI()
+
 
 class Indexer:
     collection: Collection
@@ -28,6 +30,7 @@ class Indexer:
             self.collection = chroma_client.create_collection(name="collection", metadata={"hnsw:space": "cosine"})
         try:
             self.indexed_files = json.load(open(INDEXED_FILES))
+
         except:
             self.indexed_files = []
         try:
@@ -49,14 +52,17 @@ class Indexer:
         return files_edited_since_last_index
     
     async def get_embedding(self, content:str):
-        res = await client.embeddings.create(
+        res = await async_client.embeddings.create(
                     input=content,
                     model="text-embedding-3-small"
                 )
         return res.data[0].embedding
     
     def get_closest_posts(self, query:str):
-        embedding = asyncio.run(self.get_embedding(query))
+        embedding = client.embeddings.create(
+            input=query,
+            model="text-embedding-3-small"
+        ).data[0].embedding
         res = self.collection.query(embedding, n_results=10)
         return res
 
@@ -101,6 +107,8 @@ class Indexer:
 
     def index_newly_edited_files(self):
         asyncio.run(self.aindex_newly_edited_files())
+        print('event loop closed!')
+        print('time:',time.time())
         with open(LAST_INDEXED_TIME, "w") as file:
             file.write(str(time.time()))
         with open(INDEXED_FILES, "w") as file:
@@ -116,21 +124,34 @@ class Indexer:
             matchObjs = []
             for i in range(10):
                 content = matches['documents'][0][i]
-                parent = matches['metadatas'][0][i]
+                parent = matches['metadatas'][0][i]['filename']
                 score = matches['distances'][0][i]
                 matchObjs.append({'content':content, 'parent':parent, 'score':score})
             results[segment] = matchObjs
-        print(results)
+        return results
 
     def create_file_index_for_new_files(self):
         files = self.get_newly_edited_files()
+        origin_files = set()
         for file in files:
-            self.create_file_index(file)
+            file_name = file.split('.')[0]
+            res = self.create_file_index(file)
+            for key in res.keys():
+                for match in res[key]:
+                    parent = match['parent']
+                    print(parent)
+                    origin_files.add(parent)
+            with open(f'./post-index-test/posts--{file_name}.json', "x") as file:
+                file.write(json.dumps(res))
+        print(origin_files)
 
     def create_index(self):
         files = os.listdir(POST_DIRECTORY)
         for file in files:
-            self.create_file_index(file)
+            file_name = file.split('.')[0]
+            res = self.create_file_index(file_name)
+            with open(f'./post-index-test/posts--{file_name}.json', "w") as file:
+                file.write(json.dumps(res))
 
     def _debug_log_entries(self):
         breakpoint()
