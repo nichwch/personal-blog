@@ -10,6 +10,10 @@ import asyncio
 LAST_INDEXED_TIME = "./config/lastindexeddate.config.txt"
 INDEXED_FILES = "./config/indexedfiles.config.json"
 POST_DIRECTORY = './posts/'
+DELIMITER = '\n'
+GROUP_DELIMITER = '~'
+COMMENT_DELIMITER = '//'
+
 chroma_client = chromadb.PersistentClient(path="./db")
 
 async_client = AsyncOpenAI()
@@ -21,26 +25,51 @@ class Indexer:
     last_indexed_date: int
     # neccessary to detect if files have been deleted
     indexed_files: list[str]
-    delimiter:str
 
-    def __init__(self, delimiter:str = '\n'):
+    def __init__(self):
         try:
             self.collection = chroma_client.get_collection('collection')
         except:
-            self.collection = chroma_client.create_collection(name="collection", metadata={"hnsw:space": "cosine"})
+            self.collection = chroma_client.create_collection(name="collection", metadata={"hnsw:space": "ip"})
         try:
             self.indexed_files = json.load(open(INDEXED_FILES))
 
         except:
             self.indexed_files = []
         try:
-            self.last_indexed_date = int(open(LAST_INDEXED_TIME).read())
+            self.last_indexed_date = float(open(LAST_INDEXED_TIME).read())
         except:
             self.last_indexed_date = 0
-        self.delimiter = delimiter
     
-    def split_text(self, text:str)->list[str]:
-        return text.split(self.delimiter)
+    def split_text(self, text:str) -> list[str]:
+        if text == None:
+            return []
+        split_by_newlines = text.split(DELIMITER)
+        processing_tilde = False
+        new_arr = []
+        buffer = []
+        for line in split_by_newlines:
+            if line.strip().startswith(COMMENT_DELIMITER):
+                continue
+            if line.strip() == GROUP_DELIMITER:
+                if processing_tilde:
+                    processing_tilde = False
+                    new_arr.append(DELIMITER.join(buffer))
+                    new_arr.append(line)
+                    buffer = []
+                else:
+                    processing_tilde = False
+                    new_arr.append(line)
+            elif processing_tilde:
+                buffer.append(line)
+            else:
+                new_arr.append(line)
+        
+        if processing_tilde:
+            new_arr.extend(buffer)
+        return new_arr
+
+
     
     def get_newly_edited_files(self):
         files_in_post = os.listdir(POST_DIRECTORY)
@@ -117,6 +146,7 @@ class Indexer:
     def create_file_index(self, file:str):
         file_text = open(POST_DIRECTORY + file).read()
         segments = self.split_text(file_text)
+        print('segments!', segments)
         results = {}
         print('creating index for ',file)
         for segment in segments:
@@ -141,7 +171,7 @@ class Indexer:
                     parent = match['parent']
                     print(parent)
                     origin_files.add(parent)
-            with open(f'./post-index-test/posts--{file_name}.json', "x") as file:
+            with open(f'./post-index/posts--{file_name}.json', "w+") as file:
                 file.write(json.dumps(res))
         print(origin_files)
 
@@ -150,7 +180,7 @@ class Indexer:
         for file in files:
             file_name = file.split('.')[0]
             res = self.create_file_index(file_name)
-            with open(f'./post-index-test/posts--{file_name}.json', "w") as file:
+            with open(f'./post-index/posts--{file_name}.json', "w") as file:
                 file.write(json.dumps(res))
 
     def _debug_log_entries(self):

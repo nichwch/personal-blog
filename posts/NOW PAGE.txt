@@ -1,0 +1,38 @@
+// What I'm up to now, as of Aug 18 2024
+// back to my main site: https://nicholaschen.io
+// CLICK ON A PARAGRAPH TO SEE RELATED CONTENT
+// To read more on how this feature works, read [this](https://blog.nicholaschen.io/posts/What%20is%20Yurt.txt)
+ 
+I have a job now! I work at Guardrails AI as a software engineer, working on an open source library that provides AI with guardrails to prevent undesirable behavior. 
+
+I'm playing guitar in two bands (one is a cover band, the other is an indie rock band). I'm glad I'm no longer a bedroom guitarist and it feels good to play music with other people, for other people.
+
+It's really hot in New York City, which lends itself to late night walks and spontaneous plans.  
+
+~
+I have not had as much time to work on programming side projects. In general, I've been spending more spare time on music rather than programming. There's nothing intrinsically wrong with that, but I feel like it's less a reflection of what I want than it is a reflection of my environment. 
+
+I don't actually find music to be more fulfilling than programming. I got into playing the guitar mostly by accident and to be honest I am much better at the guitar than I am at programming, but playing the guitar was never my dream growing up. There are software ideas that I am excited about and obsessed with. I don't really feel the same way about music.
+~
+
+I enjoy the process of sitting with my guitar, generating riff ideas on the fly, soloing over 8 bar progressions on my looper, but I'm not excited at all about creating a song. In many ways, my feelings about software are kind of the opposite. I have mixed, love/hate feelings about the process of writing software (reading documentation, chasing down bugs, writing tests, etc), but I feel incredibly excited about the end product. 
+
+In short, I like the process of making music but don't care much about music. I have a love/hate relationship with the process of making software, but really want to write software.
+
+I'm not really sure how to square this. One idea I've been obsessed with is how I can make the process of writing software more like the process of making music. 
+
+I love how physical playing the guitar is. I love the tactile sensation of steel strings digging into my fingers. I love how it requires me to coordinate all of my senses together. I love being able to experiment with small, self contained ideas with looper pedal. I love how it lets you map musical ideas into your head into concrete muscle memory, and I love that this muscle memory is *portable* between different keys and different songs.  
+
+I hate how flat computer interfaces are. I hate how disembodied sitting in front of a screen makes me feel. I hate straining my eyes to dig through a mountain of text, while my other senses lay unused and completely idle. I hate gigantic codebases with massive piles of dependencies and hour long build processes, where you must test every little idea you have against a mountain of assumptions to make sure it doesn't break anything.
+
+I might not really care for making music, but learning how to play the guitar showed me what I'm looking for from a creative process. If I can form a creative process that feels like playing the guitar and outputs software, that would be very rewarding.
+
+My goal in life right now is to focus more on programming, while keeping music as a hobby. I want to improve at both, and someday I'd like to unite these two interests - not in some surface level way like getting really into digital signal processing or generative music, but by making the process of writing software more like the process of making music (intuitive, embodied, modular, composable).
+
+My reading life has been totally fragmented. I am still obsessed with The Medium is the Massage and the idea of sensory ratios, but I haven't found reading more media theory to be particularly rewarding. I've reread bits and pieces of Underground Man and some Milan Kundera, and I've been reading a bit of Montaigne. All of it has been interesting, but none of the ideas have really stuck with me to the level of obsession.
+
+I rewrote the indexing software for this blog in Python. The general philosophy of keeping things as modular as possible, storing content in interoperable, plain formats whenever possible, has been paying off. I'm realizing slowly how many other possibilities are opened up by keeping content in plaintext/markdown - I can write a weekend project mapping my blog posts by topic and time, I can create a word cloud visualization of my blog, I can build a game of pong where the blocks are paragraphs of my blogposts, all without touching any existing code. 
+
+Since the content is in an interoperable format, I can build software on top of my content without touching or modifying existing code. 
+
+This is not groundbreaking news, but it's groundbreaking for me. I started my software engineering career writing code with cloud applications in mind, and the idea that you can ship cool projects without running database migrations or doing extensive backtesting against your monolith *is* groundbreaking to me. In college I wanted my own blog and instead of getting a static site generator I built out a cloud application with NextJS, PostgreSQL and Heroku. I did learn a lot and it helped me land my first internship, but now it strikes me as an incredibly wrong minded approach. 
