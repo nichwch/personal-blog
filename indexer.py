@@ -58,8 +58,7 @@ class Indexer:
                     new_arr.append(line)
                     buffer = []
                 else:
-                    processing_tilde = False
-                    new_arr.append(line)
+                    processing_tilde = True
             elif processing_tilde:
                 buffer.append(line)
             else:
