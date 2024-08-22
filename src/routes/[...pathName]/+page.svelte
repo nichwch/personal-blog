@@ -65,7 +65,7 @@
   bind:this={scrollWindow}
   on:scroll={getScrollY}
 >
-  <div class=" md:w-[26rem] lg:w-[36rem] mx-auto md:p-0 px-5">
+  <div class=" md:w-[26rem] lg:w-[36rem] mb-[4rem] mx-auto md:p-0 px-5">
     <div
       class=" px-1 pt-10 md:mt-7 md:py-3 sticky top-0 bg-white"
       class:border-b-2={scrollY > 5}
