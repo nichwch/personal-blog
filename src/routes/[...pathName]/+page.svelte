@@ -113,9 +113,6 @@
             class:border-red-500={$focusedText?.trim() === segment?.trim()}
             on:click={() => {
               focusedText.set(segment);
-              console.log(pageIndex);
-              debugger;
-              console.log(segment);
               related.set(pageIndex[segment]);
             }}
           >
