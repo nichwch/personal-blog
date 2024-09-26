@@ -2,14 +2,12 @@ I built a "stealth" button for nomad hypertext.
 
 ![Stealth button in action](stealth.png)
 
-// Why
-
+//# Why
 I get paranoid sometimes when I'm writing on my laptop in public, because it feels like people might be staring at me and what I'm writing. Usually this doesn't really matter, but if I'm journaling about something private, I do care. 
 
 When this feature is activated, it hides all the text on your screen behind red bars. You're still able to see how much you're typing and how much you're deleting, which is handy.
 
-// Thoughts
-
+//# Thoughts
 It was nice building a new feature for an app I haven't touched in a while. Still, it got me thinking about extensibility and composability. 
 
 One of the reasons I was excited to make Nomad Hypertext local first was the idea that by using simple text files, I'd be able to add more features to my notes, without working on Nomad Hypertext itself. For example, if I wanted summaries of my notes, I could build an entirely new summarizer app, that simply operates on the same files that Nomad Hypertext does. 

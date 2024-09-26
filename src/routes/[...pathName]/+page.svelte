@@ -89,7 +89,7 @@
 						id="editor-block-{index}"
 						class="text-left text-green-800 block p-1 break-words whitespace-pre-wrap"
 					>
-						<SvelteMarkdown source={segment} isInline />
+						<SvelteMarkdown source={segment.trim().slice(2)} />
 					</div>
 				{:else if segment.trim().startsWith('!')}
 					<div
