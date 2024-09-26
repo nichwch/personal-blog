@@ -1,7 +1,7 @@
-// What I'm up to now, as of Aug 18 2024
-// back to my main site: https://nicholaschen.io
-// CLICK ON A PARAGRAPH TO SEE RELATED CONTENT
-// To read more on how this feature works, read [this](https://blog.nicholaschen.io/posts/What%20is%20Yurt.txt)
+//// What I'm up to now, as of Aug 18 2024
+//// back to my main site: https://nicholaschen.io
+//// CLICK ON A PARAGRAPH TO SEE RELATED CONTENT
+//// To read more on how this feature works, read [this](https://blog.nicholaschen.io/posts/What%20is%20Yurt.txt)
  
 I have a job now! I work at Guardrails AI as a software engineer, working on an open source library that provides AI with guardrails to prevent undesirable behavior. 
 
