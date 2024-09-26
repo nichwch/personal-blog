@@ -1,0 +1,11 @@
+I want to try my hand at interface/prototype design. To do this, I want to work on interface ideas every day, and publish something every week on what I worked on.
+
+I don't care if my work gets noticed, or if it's any good, or if it leads to anything at all. I don't know if I have any talent for interface research, but it seems like I might - my sophomore year of college, I designed a notetaking tool called YANA with a novel interface where you could select text and then add tags to it. The response to it was very positive, which encouraged me to try and build a startup out of it, which unfortunately led to me becoming monomaniacally obsessed with that idea at the expense of trying to explore any other ideas (an obsession I only shed once I made Nomad Hypertext, which I could call a "finished" product). 
+
+I want to try a different approach this time. There will be no central organizing idea or principle. Playing the guitar taught me that my creative process works best when I'm free to noodle on the ideas that are immediately interesting to me, not ideas that are part of some preset plan. I have fond memories of sitting on the bus back from my first internship, cracking open my laptop, deciding to try and hack together a first version of YANA. I feel considerably less nostalgic for the late nights I spent during the pandemic trying to "scale" my idea, wrestling with pitch decks and AWS dashboards. I had lots of other ideas at the time, but didn't work on them because I felt focusing on exegesis was the correct thing to do. When I first started playing the guitar, I felt guilty learning other songs if I hadn't finished learning a past song. In reality, giving up on songs/concepts I wasn't interested in was incredibly good for my learning in the long run (provided I was still learning new things).
+
+My goals for this will be quite simple. 1. I want to work on an interface project every day. 2. I want to write about my interface work every day. 3. I want to publish something about my interface work every week. 
+
+I don't expect to be able to do anything particularly impressive. I have a day job and other life obligations. Maybe nothing comes out of this, except a few dozen half baked demos and write-ups of those demos. That's fine, at least I'll be able to say I put an honest effort into making cool interfaces.
+
+
