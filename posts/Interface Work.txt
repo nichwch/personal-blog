@@ -1,3 +1,5 @@
+// Read on substack [here](https://nickchen.substack.com/p/interface-work)
+
 I want to try my hand at interface/prototype design. To do this, I want to work on interface ideas every day, and publish something every week on what I worked on.
 
 I don't care if my work gets noticed, or if it's any good, or if it leads to anything at all. I don't know if I have any talent for interface research, but it seems like I might - my sophomore year of college, I designed a notetaking tool called YANA with a novel interface where you could select text and then add tags to it. The response to it was very positive, which encouraged me to try and build a startup out of it, which unfortunately led to me becoming monomaniacally obsessed with that idea at the expense of trying to explore any other ideas (an obsession I only shed once I made Nomad Hypertext, which I could call a "finished" product). 
