@@ -1,5 +1,7 @@
 I built a "stealth" button for nomad hypertext. 
 
+![Stealth button in action](stealth.png)
+
 // Why
 
 I get paranoid sometimes when I'm writing on my laptop in public, because it feels like people might be staring at me and what I'm writing. Usually this doesn't really matter, but if I'm journaling about something private, I do care. 
