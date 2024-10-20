@@ -1,0 +1,71 @@
+I built a summarizer utility for my journal. There are two parts to this project - one is a script that generates the summaries from my journal entries, the other is a web frontend that visualizes these summaries.
+
+//# Motivation
+
+One of the draws of note-taking systems like Roam or Obsidian is that they make taking notes purposeful. Oftentimes, it feels pointless to write, because it feels like you'll never go back through what you wrote. Roam or Obsidian promise you the ability to link back to what you wrote previously, making your notes a living, interconnected body of work. 
+
+Whether or not backlinks actually do this is up for debate. They also impinge somewhat on your writing experience - instead of just getting your thoughts out organically, you're thinking about how to link things together into a personal wiki. Sometimes this is fun, and leads to novel and productive connections. Other times it just feels contrived.
+
+Summaries feel like an easier, simpler way to make past writing legible and relevant. With AI, they're also extremely easy to generate. Instead of trying to draw constant links to past material I've written to keep it fresh, why not just generate summaries of past writings? 
+
+//# Generating summaries
+
+My first attempt at generating summaries was pretty naive. I iterated through all my notes, grouped them by week, fed each week to GPT4, and had it summarize each week individually. Somewhere along the line I made this run in parallel so it'd go faster. 
+
+// insert diagram
+
+I noticed that it had trouble maintaining continuity through different weeks. For example, if I started a project one week and wrote more about it the next week, it'd have trouble realizing that I was talking about the same project in both journal entries. This is because I write for myself in my journal, and don't feel a need to constantly reintroduce context that I'm aware of. I suspect most people also journal this way.
+
+To remedy this I introduced a context field shared between all summaries. After summarizing each journal entry, I ask the AI to update the context field with any new information about my life, and then I pass this context field to the next summary. This way, the AI has some information about the context of my life, so it knows who I'm talking to and what projects I'm working on.
+
+// insert diagram 
+
+One downside of this approach is that it makes parallelizing summaries impossible. The context also tends to bloat, and pieces of context that aren't relevant anymore tend to stay in the context anyways. 
+
+In practice, this is fine, because the context informs the summary, but isn't the summary itself - the majority of the content in the summary comes from the journal entry. The context is just there to fill in anything that's left unsaid in the journal entry.
+
+//# Structured summaries
+
+At some point I realized having plain text summaries isn't actually that useful. I want an at-a-glance view of what I was journaling about at a certain point in time. I don't want to have to read paragraphs of bland, AI-generated summary. 
+
+// screenshot of plaintext summaries
+
+One idea I had to make summaries more legible at a glance was to split them into sections. Instead of outputting a text summary, I had it output multiple summaries: An overall summary, a summary of what dreams I had that week, a summary of the ideas I was thinking about that week, a summary of what was happening in my life that week, a summary of what I was grateful for, etc. To do this, I used GPT4's structured output capabilities and had it output a JSON object with multiple fields, one for each summary. 
+
+![The summary app, with structured summaries](structuredsummary.png)
+
+This made the summary tool much more useful. Now, it was much easier to spot patterns - I could easily see if an idea I was currently thinking about was something I was thinking about in January as well. 
+
+//# Using AI
+
+I don't have anything clever to say about working with AI, but I wanted to note that using Cursor made iterating on these ideas much faster, and much more pleasant.
+
+//# Thoughts
+
+Is this tool actually useful? I think so. So far, the thing I appreciate most about this tool is that it can show me if I've been interested in an idea for a long time. It can tell me that I really appreciated someone's company (or that I found them to be a nuisance) all the way back in January. It can tell me that some of the problems I'm dealing with now I've been dealing with for months, and that I should probably do something about it immediately.
+
+So far, I do think it motivates me to write more as well. Knowing that my journal entries won't be useless unread text files on my machine and will instead be distilled into something more readable removes some of the friction from writing.
+
+//# Next steps
+
+There's some basic functionality that needs to be ironed out - I need the ability to summarize new journal entries, for example. 
+
+I'm excited about building other features on top of summaries. Having accessible plaintext weekly summaries make a variety of other use cases possible - one idea I had was to use something like Exa Search's API to curate a reading list based off what I've been journaling about recently. 
+
+Integrating with Google Photos and GPT4's multimodal capabilities to automatically generate summaries of my life based on photos I've taken could be interesting. Integrating with something like Karli Kloss' Human Programming Interface could be interesting as well.
+
+I've been curious about the concept of "morning pages" - a practice where you handwrite a set number of pages of notes in the morning, to get all your thoughts out. I think writing notes by hand is an important part of this practice, and I figure you could integrate that into the rest of a digital journaling setup fairly easily by using OCR. Then you could get summaries and semantic search and Exa-search-enabled reading lists and all the other fancy stuff you get with digital notes, with all the screenless serendipity that pen and paper gets you. 
+ 
+
+// LINK TO CODE IN Github (specific commit!)
+// This is a link to a specific commit, because I'll be building all my projects in this repo
+// LINK TO SUBSTACK FOR COMMENTS
+
+
+
+
+
+
+
+
+ 
