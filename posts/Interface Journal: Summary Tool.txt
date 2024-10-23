@@ -49,7 +49,7 @@ There's some basic functionality that needs to be ironed out - I need the abilit
 
 I'm excited about building other features on top of summaries. Having accessible plaintext weekly summaries make a variety of other use cases possible - one idea I had was to use something like Exa Search's API to curate a reading list based off what I've been journaling about recently. 
 
-Integrating with Google Photos and GPT4's multimodal capabilities to automatically generate summaries of my life based on photos I've taken could be interesting. Integrating with something like Karli Kloss' Human Programming Interface could be interesting as well.
+Integrating with Google Photos and GPT4's multimodal capabilities to automatically generate summaries of my life based on photos I've taken could be interesting. Integrating with something like [karlicoss's Human Programming Interface](https://github.com/karlicoss/HPI) could be interesting as well.
 
 I've been curious about the concept of "morning pages" - a practice where you handwrite a set number of pages of notes in the morning, to get all your thoughts out. I think writing notes by hand is an important part of this practice, and I figure you could integrate that into the rest of a digital journaling setup fairly easily by using OCR. Then you could get summaries and semantic search and Exa-search-enabled reading lists and all the other fancy stuff you get with digital notes, with all the screenless serendipity that pen and paper gets you. 
  
