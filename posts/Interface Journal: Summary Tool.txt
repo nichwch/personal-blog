@@ -12,13 +12,10 @@ Summaries feel like an easier, simpler way to make past writing legible and rele
 
 My first attempt at generating summaries was pretty naive. I iterated through all my notes, grouped them by week, fed each week to GPT4, and had it summarize each week individually. Somewhere along the line I made this run in parallel so it'd go faster. 
 
-// insert diagram
 
 I noticed that it had trouble maintaining continuity through different weeks. For example, if I started a project one week and wrote more about it the next week, it'd have trouble realizing that I was talking about the same project in both journal entries. This is because I write for myself in my journal, and don't feel a need to constantly reintroduce context that I'm aware of. I suspect most people also journal this way.
 
 To remedy this I introduced a context field shared between all summaries. After summarizing each journal entry, I ask the AI to update the context field with any new information about my life, and then I pass this context field to the next summary. This way, the AI has some information about the context of my life, so it knows who I'm talking to and what projects I'm working on.
-
-// insert diagram 
 
 One downside of this approach is that it makes parallelizing summaries impossible. The context also tends to bloat, and pieces of context that aren't relevant anymore tend to stay in the context anyways. 
 
@@ -28,7 +25,7 @@ In practice, this is fine, because the context informs the summary, but isn't th
 
 At some point I realized having plain text summaries isn't actually that useful. I want an at-a-glance view of what I was journaling about at a certain point in time. I don't want to have to read paragraphs of bland, AI-generated summary. 
 
-// screenshot of plaintext summaries
+![First version](plainsummary.png)
 
 One idea I had to make summaries more legible at a glance was to split them into sections. Instead of outputting a text summary, I had it output multiple summaries: An overall summary, a summary of what dreams I had that week, a summary of the ideas I was thinking about that week, a summary of what was happening in my life that week, a summary of what I was grateful for, etc. To do this, I used GPT4's structured output capabilities and had it output a JSON object with multiple fields, one for each summary. 
 
@@ -57,8 +54,10 @@ Integrating with Google Photos and GPT4's multimodal capabilities to automatical
 I've been curious about the concept of "morning pages" - a practice where you handwrite a set number of pages of notes in the morning, to get all your thoughts out. I think writing notes by hand is an important part of this practice, and I figure you could integrate that into the rest of a digital journaling setup fairly easily by using OCR. Then you could get summaries and semantic search and Exa-search-enabled reading lists and all the other fancy stuff you get with digital notes, with all the screenless serendipity that pen and paper gets you. 
  
 
-// LINK TO CODE IN Github (specific commit!)
+// Here is the code for this project (warning, not documented at all):
+// https://github.com/nichwch/lifeOS/tree/76601e701a1a63a9891cd9671c8da494c9887a7b
 // This is a link to a specific commit, because I'll be building all my projects in this repo
+
 // LINK TO SUBSTACK FOR COMMENTS
 
 

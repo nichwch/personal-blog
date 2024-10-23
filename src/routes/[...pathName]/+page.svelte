@@ -95,7 +95,7 @@
 					<div
 						role="article"
 						id="editor-block-{index}"
-						class="text-leftblock p-1 break-words whitespace-pre-wrap"
+						class="text-leftblock break-words p-0 whitespace-pre-wrap border-2 border-gray-700 flex"
 					>
 						<SvelteMarkdown source={segment} isInline />
 					</div>
