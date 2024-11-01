@@ -58,8 +58,7 @@ I've been curious about the concept of "morning pages" - a practice where you ha
 // https://github.com/nichwch/lifeOS/tree/76601e701a1a63a9891cd9671c8da494c9887a7b
 // This is a link to a specific commit, because I'll be building all my projects in this repo
 
-// LINK TO SUBSTACK FOR COMMENTS
-
+// [leave a comment on substack](https://nickchen.substack.com/p/interface-journal-summarizer-tool)
 
 
 
