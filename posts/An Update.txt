@@ -9,3 +9,5 @@ I've written previously about local first computing. I still agree with everythi
 I turned 25 a month ago. As a teenager, it was easy to harbor all sorts of fantasies about someday uncovering some hidden genius within myself and changing the world. In my early twenties, I'd sometimes still dream of this. No longer. I am not throwing in the towel, I am not giving up on trying to make an impact on the world, but I am giving up on the hope that I have some kind of extraordinary talent. I don't, and that's fine. I am merely competent at many things and that's enough - history is full of men with merely average talent that achieved great things. 
 
 In the spirit of all this, I've been working on a musical journaling app that connects to your Spotify and allows you to leave notes on your music. It is not going to revolutionize computing, but it has helped me reflect more on my musical inspirations and shape my guitar playing. It's pretty far along, and I'm proud of what I've built, but I'm waiting on Spotify to approve my API integration request. I can't wait to show you when it's ready.
+
+// [leave a comment on substack](https://nickchen.substack.com/p/an-update)
