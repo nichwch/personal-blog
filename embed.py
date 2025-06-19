@@ -1,3 +1,4 @@
+# RUN THIS TO INDEX
 from indexer import Indexer
 
 indexer = Indexer()
