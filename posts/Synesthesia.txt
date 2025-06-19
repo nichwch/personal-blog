@@ -1,4 +1,4 @@
-Yesterday I released the first version of a project I've been working on for a while. It's called Synesthesia, and it's a social music journaling app. You can find it at [synesthesia.club](https://synesthesia.club)
+Yesterday I released the first version of a project I've been working on for a while. It's called Synesthesia, and it's a social music journaling app. You can find it at [synesthesia.club](https://synesthesia.club).
 
 I'll keep the description brief because I'd rather you just try it, but it lets you take notes on the songs you listen to, and organize those notes with tags and mentions of other songs. You can also share these notes on your public profile, which is handy if you want to share your inspirations with your band mates.
 
@@ -8,3 +8,4 @@ This app feels like the culmination of everything I've been working towards in m
 
 It feels good to finally have it released. I hope someone other than myself finds it useful.
 
+[leave a comment on substack](https://nickchen.substack.com/p/synesthesia)
