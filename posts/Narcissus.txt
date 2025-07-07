@@ -1,0 +1,47 @@
+It's been a few weeks since I've released Synesthesia. Overall I'm pretty happy with it. A lot of people told me they thought it was really cool, fewer people actually signed up to use it, but a few of my musical friends told me they've actually found it useful for their work. 
+
+I'm happy someone other than me finds the tool useful. My worst fear is creating something nobody but myself finds useful, because then there's no way of knowing if I actually made something useful, or if I just adapted so well to using my own tool that I tricked myself into thinking its useful. 
+
+In high school, I made this [platformer game](https://nichwch.itch.io/machinegods) that I thought was quite easy but my friends found to be incredibly difficult. It turned out that I'd developed an incredible amount of muscle memory while testing the game out. I'm always scared that something similar will happen with the applications that I design. It's worse because I code and design my own projects, and sometimes it's not clear if I designed something because it's intuitive, or because it matches the database schema more cleanly. On the one hand, it feels incredibly elegant to have your design to express the same consistent schema both in its user-facing interface and its inner workings. On the other hand, isn't your job as a designer to shield your users from complexity?
+
+I've been reading Understanding Media with some friends, and there's a chapter on the Greek myth of Narcissus. McLuhan claims that this story is about man's relationship with technology - the lake is to Narcissus as technology is to man. Narcissus, failing to realize the figure he sees in the lake is his own reflection, falls in love with it, and wastes away trying to love something that definitionally cannot love him back. 
+
+McLuhan describes the situation as such - "[he] had adapted to his extension of himself and had become a closed system" (Understanding Media, pg. 51). It's this last part about being a closed system that's really interesting to me, because I think this is the most dangerous part about building something without user feedback: you form a closed system with what you're making.
+
+You adapt the tool to your own needs. That's good, that's what you should do when you make a tool: adapt it to your needs. The sinister part is that whenever you use a tool, it changes you too. As you adapt the tool to yourself, you also adapt to the tool, and if you have no external feedback, that forms the closed system that McLuhan thinks characterizes Narcissus' situation and also man's relationship with technology.
+
+I found this chapter of Understanding Media haunting because this happens to me all the time. I find myself obsessed with an idea, try to build it, get a working prototype, and refine the prototype in isolation - without realizing that the lack of external feedback means I'm created a closed feedback loop where I am adapting myself to a tool that I myself am making. A closed system like this converges towards a tool that is useful to no one at all.
+
+The opposite of this situation is designing by committee, where you tirelessly survey and A/B test every decision to ensure you're adapting to actual user needs. I think this is also bad: if you want to make something original, you have to have some original insight, and you cannot survey your way to an original insight. The boring conclusion here is that you have to strike some kind of balance between these extremes.
+
+The bigger takeaway is this: do not assume that there is a simple one-way relationship between people and tools, where people just use tools without any second order effects. This is wrong. To quote McLuhan, "the use of technology conforms men to them ... [an] Indian is the servomechanism of his canoe, as the cowboy of his horse or the executive of his clock" (Understanding Media, pg. 55). 
+
+A safer (and more correct) assumption: *you* serve your tools, not the other way around. This puts a much higher burden on a designer - you are not making something people will use, you are making something people will (consciously or not) adapt themselves to and *serve*. Thinking this way puts you in a much more paranoid state of mind, which I believe is the correct stance to take towards technology. (1)
+ 
+I'll end here and point you to another [interesting take on the Narcissus myth.](https://thelastpsychiatrist.com/2012/10/the_story_of_narcissus.html) This article is less about technology and more about human psychology, but I think you can still relate it back. Here's a quote: 
+
+"You think Narcissus was so in love with himself that he couldn't love anyone else.  But that's not what happened, the story clearly tells it in the reverse: he never loved anyone and then he fell in love with himself.  Do you see?  Because he never loved anyone, he fell in love with himself.   That was Narcissus's punishment."
+
+If we analyze this quote alongside what McLuhan has written, it suggests that our troubled relationship with technology arises from our avoidance of one another. More optimistically, it suggests that there is a solution (however cliched it might be): show genuine concern for your fellow man.
+  
+Resist the impulse to distance yourself from others. Sartre famously remarked "hell is other people", but at the end of the day, only other people can save you from the technologically induced "narcosis" McLuhan warns about. The encroachment of other people's desires on you is ultimately a blessing, not a curse. (2)
+
+// Footnotes
+1) One of the best feelings when you're making something is the first time you personally find it useful. An uncomfortable corollary of the argument here, however, is that you should be suspicious of this feeling - you are at risk of becoming the servomechanism of what you are making.
+
+2) One consequence of this conclusion is that if you're quitting social media, you should be sure that you're doing it for the right reasons. Are you doing it because you want to connect with people in real life, or are you running away from the presence of other people?
+
+The interesting thing about McLuhan is that he treats all mediums as inherently dangerous - there is a chapter in the book where he talks about how speech itself irreversibly transformed the human experience. Quitting social media only to become a hermit who reads or watches television all day does not solve anything. The problem is not social media per se, the problem is using technology to retreat from other people. Neon Genesis Evangelion is about this theme as well, and it predates the internet.
+
+You are better off doomscrolling TikTok if it genuinely brings you closer to other people than you are as a misanthropic hermit who reads classical literature to feel superior to others. Avoid becoming a closed system.
+
+I will admit that this is my personal synthesis of McLuhan and TLP's views of the myth of narcissus - this is not necessarily what McLuhan would say.
+
+ 
+
+  
+
+   
+
+
+
