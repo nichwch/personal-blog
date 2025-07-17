@@ -20,3 +20,4 @@ Reflecting on how this went, I'm glad I branched out into another project, but I
 
 One fun thing about this project is it made me think a lot about grids. Grids are cool! You can use them in lots of unorthodox ways. I saw [Clavier36](https://clavier36.com/) while working on Gridworld and it made me wonder what a similar interface for composing prompts might look like.  
   
+// [leave a comment/subscribe on substack](https://nickchen.substack.com/p/gridworld)
