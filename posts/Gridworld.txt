@@ -2,7 +2,7 @@ I've vacillated on this blog between the idea of working on small projects and w
 
 [Gridworld](https://gridworld.nicholaschen.io) is a turn-based, LLM-based, grid-based world simulator. 
 
-The core game state is just a grid of strings. You can denominate agents like so - <agent>. Agents have their own internal thought processes and planning stage at the end of each turn. 
+The core game state is just a grid of strings. You can denominate agents between angle brackets. Agents have their own internal thought processes and planning stage at the end of each turn. 
 
 My motivation for working on this project was to explore the frame of LLMs as simulators. Could you use LLMs to simulate how multiple agents interact with each other in a given scenario?
 
@@ -10,7 +10,7 @@ My motivation for working on this project was to explore the frame of LLMs as si
 
 I was drawn to the idea of a simple world state - a simple two dimensional array of text. I figured it would be difficult for the LLM to simulate convincing theory of mind (e.g. agents can plot against other agents without the other agents knowing )with just a 2D grid, so I added additional state to simulate the memory and thought process of agents. In practice, this is all very simple as well - it's just an array of text, representing the agent's past thought processes.
 
-The core game loop looks like this: At the end of each turn, extract all agents from the board (by finding cells that contain text that matches <agent>). For each agent, plot what action to take, given the current board state and the agent's past history. Then, for the grid as a whole, consider any environmental affects that might happen (fire spreading, rivers flowing, etc). Finally, given all agent actions and environmental affects, decide the next state of the grid.
+The core game loop looks like this: At the end of each turn, extract all agents from the board (by finding cells that contain text that has an agent). For each agent, plot what action to take, given the current board state and the agent's past history. Then, for the grid as a whole, consider any environmental affects that might happen (fire spreading, rivers flowing, etc). Finally, given all agent actions and environmental affects, decide the next state of the grid.
 
 In practice, I had to add quite a few "proofreading" steps and some bespoke logic to spot invalid game states - agents suddenly disappearing from the grid, agents suddenly jumping across the map, agents showing up twice because the world reconciliation step didn't erase the agent's previous position, etc.
 
