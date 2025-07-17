@@ -1,0 +1,22 @@
+I've vacillated on this blog between the idea of working on small projects and working on large projects. I thought I'd try something of a hybrid approach - having a main project, and then working on spinoff projects when I need a break. I spent last week working on such a project.
+
+[Gridworld](https://gridworld.nicholaschen.io) is a turn-based, LLM-based, grid-based world simulator. 
+
+The core game state is just a grid of strings. You can denominate agents like so - <agent>. Agents have their own internal thought processes and planning stage at the end of each turn. 
+
+My motivation for working on this project was to explore the frame of LLMs as simulators. Could you use LLMs to simulate how multiple agents interact with each other in a given scenario?
+
+[People have researched this topic in the past.](https://arxiv.org/pdf/2304.03442) Usually, however, they've used fairly complicated world simulators and agent loops. Given vast improvements in model quality, is it possible to eschew this programmatic scaffolding in favor of something simpler? This seems to be a general trend with language models - as base models improve, the amount of programmatic "scaffolding" you need around them decreases. For example, as context windows have increased, RAG is used less often. You can skip the overhead of spinning up a vector database in favor of just stuffing all your context into the prompt.
+
+I was drawn to the idea of a simple world state - a simple two dimensional array of text. I figured it would be difficult for the LLM to simulate convincing theory of mind (e.g. agents can plot against other agents without the other agents knowing )with just a 2D grid, so I added additional state to simulate the memory and thought process of agents. In practice, this is all very simple as well - it's just an array of text, representing the agent's past thought processes.
+
+The core game loop looks like this: At the end of each turn, extract all agents from the board (by finding cells that contain text that matches <agent>). For each agent, plot what action to take, given the current board state and the agent's past history. Then, for the grid as a whole, consider any environmental affects that might happen (fire spreading, rivers flowing, etc). Finally, given all agent actions and environmental affects, decide the next state of the grid.
+
+In practice, I had to add quite a few "proofreading" steps and some bespoke logic to spot invalid game states - agents suddenly disappearing from the grid, agents suddenly jumping across the map, agents showing up twice because the world reconciliation step didn't erase the agent's previous position, etc.
+
+That makes the answer to the question, "Can you get rid of scaffolding in favor of just relying on the base model?" a resounding no. The models really struggle with maintaining object permanence. You need to model this programmatically - even if the context window is large enough to store a world model, the LLM itself hallucinates too often to maintain coherence over multiple turns.
+
+Reflecting on how this went, I'm glad I branched out into another project, but I honestly don't really care about Gridworld all that much. It feels disconnected from everything else I made and I'm not super interested in following up more on it. I think the approach of working on one main project with breaks to work on smaller projects is a good one, but I want those smaller projects to be more related to my main project. I have lots of side project ideas related to tools for thought and music. I thought it'd be cool to do LLM research for its own sake, but I've realized I don't care all that much about the fundamental properties of LLMs - I care more about using them as a tool to build the things I already want to build. There are plenty of possibilities there, for example adding semantic search to Synesthesia to supplement the tagging system (which I honestly do not like at all). As I continue to build side projects in my spare time I want to keep this in mind.
+
+One fun thing about this project is it made me think a lot about grids. Grids are cool! You can use them in lots of unorthodox ways. I saw [Clavier36](https://clavier36.com/) while working on Gridworld and it made me wonder what a similar interface for composing prompts might look like.  
+  
